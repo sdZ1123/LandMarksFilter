@@ -33,13 +33,13 @@ namespace mediapipe {
 		// update the sampling frequency based on timestamps
 		if (last_time_ != 0 && new_timestamp != 0) {
 			static constexpr double kNanoSecondsToSecond = 1e-9;
-			frequency_ = 1.0 / ((new_timestamp - last_time_) * kNanoSecondsToSecond);
+			frequency_ = 1.0 / ((new_timestamp - last_time_) /** kNanoSecondsToSecond*/);
 		}
 		last_time_ = new_timestamp;
 
 		// estimate the current variation per second
 		double dvalue = x_->HasLastRawValue()
-			? (value - x_->LastRawValue()) * value_scale * frequency_
+			? (value - x_->LastRawValue()) */* value_scale **/ frequency_
 			: 0.0;  // FIXME: 0.0 or value?
 		double edvalue = dx_->ApplyWithAlpha(dvalue, GetAlpha(derivate_cutoff_));
 		// use it to update the cutoff frequency
