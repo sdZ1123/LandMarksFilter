@@ -29,15 +29,16 @@ struct MConfig
 	//input : VelocityFilter or OneEuroFilter
 	std::string pattern;
 	int points2dSize;
+
 	//VelocityFilter input param
 	size_t window_size;
 	float velocity_scale;
 	DistanceEstimationMode distance_mode;
-	//OneEuroFilterImpl input param
-	double frequency;
-	double min_cutoff;
-	double beta;
-	double derivate_cutoff;
+	//OneEuroFilter input param
+	double frequency=120; //120 Hz 
+	double min_cutoff=1.0;  //最小截止频率(降低最小截止频率会降低慢速抖动，但是增大延迟)
+	double beta=0.007; //速度系数（增加速度系数会减少速度滞后，增加抖动）
+	double derivate_cutoff=1.0;
 };
 
 struct MediaPipeData

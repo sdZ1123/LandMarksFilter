@@ -20,5 +20,6 @@ private:
 	/*std::vector<mediapipe::RelativeVelocityFilter *> p_velyfs;
 	std::vector<mediapipe::OneEuroFilter*> p_oneEfs;*/
 	MConfig config;
+	
 };
 
